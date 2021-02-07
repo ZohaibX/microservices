@@ -10,14 +10,12 @@ import { Ticket } from '../model/ticket';
 const router = express.Router();
 
 router.post('/api/orders', requireAuth, async (req: Request, res: Response) => {
-  // if (!req.body.ticketId || req.body.ticketId === '')
-  //   throw new Error('Ticket ID must be provided');
+  if (!req.body.ticketId || req.body.ticketId === '')
+    throw new Error('Ticket ID must be provided');
 
   //* Find the ticket user is trying to order
-  const ticket = await Ticket.findOne(req.body.ticketId);
+  const ticket = await Ticket.findById(req.body.ticketId);
   if (!ticket) throw new NotFoundError();
-
-  console.log(typeof ticket, 'ticket is :', ticket);
 
   //* Making Sure Ticket is not already reserved
   // if the ticket is reserved, it will be associated to some order
