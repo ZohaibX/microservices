@@ -1,0 +1,34 @@
+#? Basic commands must be executed from the website
+apiVersion: extensions/v1beta1 # this apiVersion is expired but this is the only one working
+kind: Ingress
+metadata:
+  name: ingress-service
+  annotations:
+    kubernetes.io/ingress.class: nginx
+    nginx.ingress.kubernetes.io/use-regex: 'true'
+spec:
+  rules:
+    - host: ticketing.dev # i can use any fake domain name which will work only in my machine
+      # for host -- go to C:\Windows\System32\drivers\etc and then open hosts file in VS code as an administrator
+      # and after the # END OF SECTION . put 127.0.0.1 [fake-host-name]
+      # sample file in Notes
+      #! page will not open for this fake host and will show error --
+      #! we need to tap anywhere on the screen and write from the keyboard 'thisisunsafe'
+      http:
+        paths:
+          - path: /api/users/?(.*)
+            backend:
+              serviceName: auth-service # actual service file name
+              servicePort: 3000 # actual service file port
+          - path: /api/tickets/?(.*)
+            backend:
+              serviceName: tickets-service # actual service file name
+              servicePort: 3000 # actual service file port
+          - path: /api/orders/?(.*)
+            backend:
+              serviceName: orders-service # actual service file name
+              servicePort: 3000 # actual service file port
+          - path: /?(.*) #! this service must b at the bottom of all - bcoz if some request comes for /api/user -- it will directly go to this service
+            backend:
+              serviceName: client-srv # actual service file name
+              servicePort: 3000 # actual service file port

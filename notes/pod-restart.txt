@@ -1,0 +1,3 @@
+pods must be restarted after facing different tests and having trash data
+
+kubectl delete pod [pod name]

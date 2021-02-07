@@ -1,0 +1,13 @@
+go to console.cloud.google.com
+create a new project 
+
+then on that project -- go to the navbar and go to kubernetes engine -> clusters 
+and then we have to wait so it gets ready
+ring icon on the top right of the page stops loading then i can refresh the page to create a cluster 
+
+create a zonal kubernetes cluster
+set nodes on the default node section on the sidebar 
+there should be 4vcpu and 4GB ram
+and storage should be standard persistent disk 
+
+configure everything that is necessary and create a kubernetes cluster

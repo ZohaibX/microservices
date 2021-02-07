@@ -1,0 +1,11 @@
+Authorization problem -- 
+
+if a user gets a jwt token and after that, admin bans that user 
+that user will have the token already and he can do anything with that token
+
+so, we have to have a system that when admin bans the user 
+event bus will execute an event and tell every service to not let him access the service
+this event will be stored in the service for a smaller time until token gets expired by itself
+
+if we have set to expire the token after 15 minutes of its creation  
+then that event will be stored in the service for 15 minute and will not let him access the service for 15 mins 

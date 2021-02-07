@@ -1,0 +1,66 @@
+Common folder will be in sync by npm registry 
+all the code we write there will be published to npm so we can use that in other services 
+
+3 ways to publish to npm - public , private and organization
+we need to pay money for private one   
+
+we will go with organization one and we could easily shift to private if we wish to do so   
+
+sign in to npm js  
+go to my picture tab and select Add organization
+and create a public organization
+
+now create the common folder in my VS code and do yarn init -y 
+and in the package.json file - change the name in to "@[org_name]/[anyNameForPackage]"
+
+
+!!!!!!!!!!! Every time before publishing 
+to publish npm package, we must have committed the common file to gitHub (not pushed)
+git init 
+git add .
+git commit -m "" 
+
+every time before publishing the code , we need to update the version in package.json
+manually or by running the command yarn version 
+
+then,
+npm publish --access public  // if gives an error , do npm login 
+
+then i can see that package on my org on npmjs.com
+tsc --init
+yarn add --dev typescript del-cli 
+
+we will write all the code in ts and will publish it in js bcoz of ts version issues
+we will add a script 
+"scripts": {
+        "clean": "del-cli ./build/*",
+        "build": "yarn clean && tsc"
+},
+
+then we will go to tsconfig file and uncomment the declaration property which is true 
+we will uncomment the outDir property and change it to "./build"
+
+create a src folder and a ts file in there Must!
+then run the command -- yarn build 
+
+add this in package.json 
+"main": "./build/index.js",
+"types": "./build/index.d.ts",
+"files": [
+        "build/**/*"
+],
+that means main file coming by installing the package would be index.js and so for types file 
+and build/**/* are going to publish 
+
+create .gitignore and add build and node_modules
+
+
+we will do yarn build 
+yarn version
+we will do git add commit 
+and then npm publish --access public  
+
+
+now i can do yarn add @zbtickets/common any where and install its methods 
+and if we have already installed this package, we will need to upgrade that , to have exact version 
+yarn upgrade @zbtickets/common

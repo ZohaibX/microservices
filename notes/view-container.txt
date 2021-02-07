@@ -1,0 +1,11 @@
+//!! Do it in powershell -- admin mode // otherwise will face TTY error 
+
+kubectl get pods 
+kubectl exec -it [pod_name] sh 
+do ls 
+cd node_modules 
+cd @zbtickets 
+cd common  
+do ls  // package.json and build folder
+cat package.json // to print out the file  
+ 

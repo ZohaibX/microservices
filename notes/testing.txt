@@ -1,0 +1,17 @@
+yarn add --dev @types/jest @types/supertest jest ts-jest supertest mongodb-memory-server
+
+package.json
+
+"scripts": {
+        "start": "ts-node-dev src/index.ts",
+        "test": "jest --watchAll --no-cache"
+    },
+    "jest": {
+        "preset": "ts-jest",
+        "testEnvironment": "node",
+        "setupFilesAfterEnv": [
+            "./src/test/setup.ts"
+        ]
+    },
+
+then go and create the test folder and setup file 

@@ -1,0 +1,3 @@
+all docker images must be hosted to docker hub before we deploy the project to GCE 
+
+may be we will be needed to to docker login to push that

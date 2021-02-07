@@ -1,0 +1,41 @@
+
+                             !!! getInitialProps !!!
+
+//! Important Point
+// whenever we go to any backend side route like 'api/users/currentUser'
+// or some client side route 'auth/signUp'
+// https://ticketing.dev will be automatically assigned to that routes
+// in node and normal javascript both
+
+//! Important Notes - Specifically for K8s
+
+// normally, we request to https://ticketing.dev
+// it goes to computer and computer translates ticketing.dev into localhost or 127.0.0.1:80
+// this route goes to ingress-nginx , and nginx will return data for '/' route and everything is fine
+// then at some point, we request to some other micro service like auth - https://ticketing.dev/api/user/currentUser
+// and same process will happen again for auth service
+
+// but in next js and in getInitialProps, when we fetch currentUser in getInitialProps .
+// we request to https://ticketing.dev
+// it goes to computer and computer translates ticketing.dev into localhost or 127.0.0.1:80
+// this route goes to ingress-nginx and it will go to client side as route is '/'
+// then, it will see one more request inside https://ticketing.dev (client side), which is /api/users/currentUser
+// then /api/users/currentUser will become https://ticketing.dev/api/user/currentUser (auth service)
+// then this route will also be translated by computer and ticketing.dev will become localhost or 127.0.0.1:80
+// but this all is a single process when https://ticketing.dev went to client side, so we are still in client side container
+// from client side container, we are requesting to auth container using request localhost://something
+// localhost request will go in its own container -- client container
+// it will not go to other container using localhost request
+// so we will get an error for not no route available
+
+//? Solution
+// we will directly make request to ingress nginx and that will take us to different services
+// normally , we have different namespaces in k8s
+// and we use default namespace for all the cluster
+// but ingress-service is always in a different namespace
+// so to make a request to a service , which is in different namespace
+// we will route on 'http://ServiceName.NameSpace.svc.cluster.local/blahblahblah' , header property
+// kubectl get namespaces  // we will get namespace for ingress-service
+// kubectl get services -n [namespace] // to get name of the service in the other namespace
+// header property is to tell nginx to apply same rules here as we expected for ticketing.dev bcoz we have host: ticketing.dev property in headers
+// and we have cookie in headers

@@ -1,0 +1,8 @@
+
+purchase a domain name 
+go to my products
+go to the DNS Option on the right side of the purchased domain name 
+
+NAME    TYPE    TTL   DATA/VALUE 
+ @        A     1H     IP Address   (IP Address like 123.121.31.21)
+ www     CNAME  1H     goldlacpaints.online (domain name )

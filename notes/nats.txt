@@ -1,0 +1,20 @@
+This is nats-streaming-server / not nats -- both are different 
+
+create nats-depl.yaml 
+do configuration and go to skaffold and see if the deployment is created and working 
+check it by kubectl get pods 
+
+in the common module, we must have a base listener and a base publisher abstract classes 
+and we will extend that classes in individual services as sub classes 
+and we will use the subclasses to create instances
+
+base-listener and base-publisher is full of documentation in common module 
+we must have to define all the event channels in Subjects enum in common/src/events/helpers/Subjects
+and for every channel, we must have an interface describing their behavior 
+
+we could update channels and their interfaces time to time 
+
+so we made create publishers methods like we did in tickets/events
+and we  used them in new.ts and update.ts 
+
+
