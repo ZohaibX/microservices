@@ -6,7 +6,8 @@ import {
 } from '@zbtickets/common';
 import express, { Request, Response } from 'express';
 import { Order } from '../model/orders';
-// import { Ticket } from '../model/ticket';
+import { natsWrapper } from '../services/nats/nats-wrapper';
+import { OrderCancelPublisher } from '../events/publishers/order-cancel-event';
 const router = express.Router();
 
 router.delete('/api/orders/:id', async (req: Request, res: Response) => {
@@ -22,6 +23,13 @@ router.delete('/api/orders/:id', async (req: Request, res: Response) => {
   await order.save();
 
   //* Publish an event cancelling the order
+  new OrderCancelPublisher(natsWrapper.client).publish({
+    id: order.id,
+    version: order.version,
+    ticket: {
+      id: order.ticket.id,
+    },
+  });
 
   res.status(204).send(order); /// 204 is a delete status
 });

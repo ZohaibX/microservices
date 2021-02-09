@@ -1,6 +1,7 @@
 import { OrderStatus } from '@zbtickets/common';
 import mongoose, { mongo } from 'mongoose';
 import { TicketDoc } from './ticket';
+import { updateIfCurrentPlugin } from 'mongoose-update-if-current';
 
 // An interface that describes the properties
 // that are required to create a new Ticket
@@ -24,6 +25,7 @@ interface OrderDoc extends mongoose.Document {
   expiresAt: Date;
   status: OrderStatus;
   ticket: TicketDoc; //! important
+  version: number; // important dependency to handle versioning
   // createdAt: string; i can add properties like this which are supposed to be added by mongoose
 }
 
@@ -58,6 +60,10 @@ const orderSchema = new mongoose.Schema<OrderDoc, OrderModel>(
     },
   }
 );
+
+orderSchema.set('versionKey', 'version');
+orderSchema.plugin(updateIfCurrentPlugin);
+// important dependency to handle versioning
 
 //? this is to apply ts type checking on the attributes -- we provide while creating -- ex at (1)
 orderSchema.statics.build = (attrs: OrderAttrs) => {

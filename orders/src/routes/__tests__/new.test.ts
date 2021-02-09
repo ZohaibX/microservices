@@ -4,6 +4,7 @@ import mongoose from 'mongoose';
 import { Ticket } from '../../model/ticket';
 import { Order } from '../../model/orders';
 import { OrderStatus } from '@zbtickets/common';
+import { natsWrapper } from '../../services/nats/nats-wrapper'; //! jest will automatically use mock natsWrapper according to our setting in setup.ts
 
 it('returns an error if the ticket does not exist ', async () => {
   const ticketId = mongoose.Types.ObjectId();
@@ -63,4 +64,18 @@ it('reserved a ticket  ', async () => {
     .expect(201);
 });
 
-it.todo('publish an event creating order ');
+it('publish an event creating order', async () => {
+  const ticket = Ticket.build({
+    title: 'blah blah',
+    price: 12,
+  });
+  await ticket.save();
+
+  await request(app)
+    .post('/api/orders')
+    .set('Cookie', global.signUp())
+    .send({ ticketId: ticket.id })
+    .expect(201);
+
+  expect(natsWrapper.client.publish).toHaveBeenCalled();
+});

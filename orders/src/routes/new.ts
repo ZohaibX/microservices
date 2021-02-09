@@ -7,6 +7,8 @@ import {
 import express, { Request, Response } from 'express';
 import { Order } from '../model/orders';
 import { Ticket } from '../model/ticket';
+import { natsWrapper } from '../services/nats/nats-wrapper';
+import { OrderCreatePublisher } from '../events/publishers/order-create-event';
 const router = express.Router();
 
 router.post('/api/orders', requireAuth, async (req: Request, res: Response) => {
@@ -15,6 +17,8 @@ router.post('/api/orders', requireAuth, async (req: Request, res: Response) => {
 
   //* Find the ticket user is trying to order
   const ticket = await Ticket.findById(req.body.ticketId);
+  console.log(ticket);
+
   if (!ticket) throw new NotFoundError();
 
   //* Making Sure Ticket is not already reserved
@@ -36,7 +40,20 @@ router.post('/api/orders', requireAuth, async (req: Request, res: Response) => {
     status: OrderStatus.Created,
   });
   await order.save();
+
   //* Publish an event saying an order is created
+  new OrderCreatePublisher(natsWrapper.client).publish({
+    id: order.id,
+    status: order.status,
+    userId: order.userId,
+    version: order.version,
+    expiresAt: order.expiresAt.toISOString(), // we will send data as string and retrieve as object
+    ticket: {
+      id: ticket.id,
+      price: ticket.price,
+    },
+  });
+
   res.status(201).send(order);
 });
 

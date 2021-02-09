@@ -1,8 +1,8 @@
 //! That's how we will create publisher
 
-import { Publisher, Subjects, TicketUpdatedInterface } from '@zbtickets/common';
+import { Publisher, Subjects, TicketUpdateEvent } from '@zbtickets/common';
 
-export class TicketUpdatePublisher extends Publisher<TicketUpdatedInterface> {
+export class TicketUpdatePublisher extends Publisher<TicketUpdateEvent> {
   readonly subject = Subjects.TicketUpdated;
 }
 

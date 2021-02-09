@@ -1,15 +1,54 @@
-import { database } from './services/mongodb';
 import { app } from './app';
-// import { errorHandler } from './errors/error-handler';
-import { natsConnection } from './services/nats/nats-connection';
+import mongoose from 'mongoose';
+import { TicketCreateListener } from './events/listeners/ticket-create-listener';
+import { TicketUpdateListener } from './events/listeners/ticket-update-listener';
+import { natsWrapper } from './services/nats/nats-wrapper';
 
-if (!process.env.JWT_KEY)
-  // this is in k8s/auth depl
-  throw new Error('process.env.JWT_KEY is not defined ');
+const start = async () => {
+  console.log('Starting......');
 
-natsConnection();
-database();
+  if (!process.env.JWT_KEY)
+    throw new Error('process.env.JWT_KEY is not defined ');
 
-app.listen(3000, () => {
-  console.log('App is listening on the port 3000!');
-});
+  if (!process.env.MONGO_URI) throw new Error('Mongo Uri must be defined');
+
+  if (!process.env.NATS_CLUSTER_ID)
+    throw new Error('NATS CLUSTER_ID is not defined');
+
+  if (!process.env.NATS_CLIENT_ID)
+    throw new Error('NATS CLIENT_ID is not defined');
+
+  if (!process.env.NATS_URL) throw new Error('NATS URL is not defined');
+
+  try {
+    await natsWrapper.connect(
+      process.env.NATS_CLUSTER_ID,
+      process.env.NATS_CLIENT_ID,
+      process.env.NATS_URL
+    );
+    natsWrapper.client.on('close', () => {
+      console.log('NATS connection closed!');
+      process.exit();
+    });
+    process.on('SIGINT', () => natsWrapper.client.close());
+    process.on('SIGTERM', () => natsWrapper.client.close());
+
+    new TicketCreateListener(natsWrapper.client).listen();
+    new TicketUpdateListener(natsWrapper.client).listen();
+
+    await mongoose.connect(process.env.MONGO_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+      useCreateIndex: true,
+    });
+    console.log('Connected to MongoDb');
+  } catch (error) {
+    console.error(error);
+  }
+
+  app.listen(3000, () => {
+    console.log('Listening on port 3000!!!!!!!!');
+  });
+};
+
+start();
