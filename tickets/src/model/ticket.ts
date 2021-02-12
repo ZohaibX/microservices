@@ -23,6 +23,7 @@ interface TicketDoc extends mongoose.Document {
   price: number;
   userId: string;
   version: number; // important dependency to handle versioning
+  orderId?: string; // optional
   // createdAt: string; i can add properties like this which are supposed to be added by mongoose
 }
 
@@ -39,6 +40,9 @@ const ticketSchema = new mongoose.Schema<TicketDoc, TicketModel>(
     userId: {
       type: String,
       required: true,
+    },
+    orderId: {
+      type: String,
     },
   },
   // changing the returns

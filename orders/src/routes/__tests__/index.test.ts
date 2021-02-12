@@ -7,6 +7,7 @@ import { OrderStatus } from '@zbtickets/common';
 
 const buildTicket = async (title: string) => {
   const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title,
     price: 20,
   });

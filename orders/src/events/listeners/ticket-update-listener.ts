@@ -17,7 +17,11 @@ export class TicketUpdateListener extends Listener<TicketUpdateEvent> {
   async onMessage(data: TicketUpdateEvent['data'], msg: Message) {
     const { id, version, title, price } = data; // we are only receiving data, we need to save on our database
 
-    const ticket = await Ticket.findByEvent(data);
+    console.log('version: ', version);
+
+    const ticket = await Ticket.findByEvent(data); // we are finding data with the version - 1
+    // and when we save the date, mongooseCurrentUpdate plugin will automatically update to +1
+
     if (!ticket) throw new NotFoundError();
 
     ticket.set({ title, price });

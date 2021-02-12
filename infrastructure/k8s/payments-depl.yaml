@@ -1,0 +1,57 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: payments-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: payments
+  template:
+    metadata:
+      labels:
+        app: payments
+    spec:
+      containers:
+        - name: payments
+          image: 03004968719/ms-payments # this image is only built and not deployed
+          env:
+            - name: MONGO_URI
+              value: 'mongodb://payments-mongo-srv:27017/payments'
+              #! we first need to have mongo-depl.yaml to make this work, its own db
+              # in a k8s env, it is not an issue to hard coat this mongo uri because to access this,
+              # someone would have to enter into the k8s cluster with my email account
+              # but i can still use it as a secret
+            - name: NATS_URL
+              value: 'http://nats-srv:4222'
+            - name: NATS_CLUSTER_ID
+              value: ticketing
+            - name: NATS_CLIENT_ID
+              valueFrom:
+                fieldRef:
+                  fieldPath: metadata.name # we will get its own pod name - which is always unique
+            - name: JWT_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: jwt-secret
+                  key: JWT_KEY
+            - name: STRIPE_SECRET
+              valueFrom:
+                secretKeyRef:
+                  name: stripe-secret
+                  key: STRIPE_SECRET
+---
+# service config
+apiVersion: v1
+kind: Service
+metadata:
+  name: payments-service
+spec:
+  # default type is cluster-ip-service
+  selector:
+    app: payments
+  ports:
+    - name: payments
+      protocol: TCP
+      port: 3000
+      targetPort: 3000

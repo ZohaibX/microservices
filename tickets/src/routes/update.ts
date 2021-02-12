@@ -3,6 +3,7 @@ import {
   requireAuth,
   NotFoundError,
   NotAuthorizedError,
+  BadRequestException,
 } from '@zbtickets/common';
 import { validateAuthInput } from '../services/validate-input';
 import { Ticket } from '../model/ticket';
@@ -22,6 +23,8 @@ router.put(
     const ticket = await Ticket.findById(req.params.id);
     if (!ticket) throw new NotFoundError();
 
+    if (ticket.orderId)
+      throw new BadRequestException(' Cannot Edit a Reserved Ticket');
     if (ticket.userId !== req.currentUser!.id) throw new NotAuthorizedError();
 
     // way to update

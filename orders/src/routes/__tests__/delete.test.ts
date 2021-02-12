@@ -11,6 +11,7 @@ it('marks an orders status as Cancelled', async () => {
 
   //* create a ticket to create an order
   const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: 'Ticket',
     price: 12,
   });
@@ -43,6 +44,7 @@ it('publish an event cancelling order', async () => {
 
   //* create a ticket to create an order
   const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: 'Ticket',
     price: 12,
   });

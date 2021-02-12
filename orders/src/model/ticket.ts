@@ -63,6 +63,7 @@ ticketSchema.plugin(updateIfCurrentPlugin);
 // important dependency to handle versioning
 
 // note - this property is specially for versioning stuff in the Listening service of an event
+// important - this build method is different than normal , to apply versioning
 ticketSchema.statics.findByEvent = (event: { id: string; version: number }) => {
   return Ticket.findOne({
     _id: event.id,

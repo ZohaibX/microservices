@@ -30,7 +30,10 @@ router.post('/api/orders', requireAuth, async (req: Request, res: Response) => {
   const EXPIRATION_WINDOW_TIME = 15 * 60; // 15 minutes //? this must be done in env variable
   const expiration = new Date();
   expiration.setSeconds(expiration.getSeconds() + EXPIRATION_WINDOW_TIME);
-  // this is how we can set 15 minutes after creating an order
+  //? this will set the time into some long number
+  //? new Date(expiration).getTime() // saved time in ms  - new Date().getTime() // current time in ms
+  //? this is how we can get back our Expiration time in seconds
+  // note - this is how we can set 15 minutes after creating an order
 
   //* Build the order and save it to the database
   const order = await Order.build({

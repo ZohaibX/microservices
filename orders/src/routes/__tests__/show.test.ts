@@ -8,6 +8,7 @@ import { OrderStatus } from '@zbtickets/common';
 it('fetches the order', async () => {
   //* create a ticket
   const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: 'Ticket',
     price: 12,
   });
@@ -33,6 +34,7 @@ it('fetches the order', async () => {
 it('returns an error if user tries to fetch another users order', async () => {
   //* create a ticket
   const ticket = Ticket.build({
+    id: new mongoose.Types.ObjectId().toHexString(),
     title: 'Ticket',
     price: 12,
   });

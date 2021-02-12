@@ -747,10 +747,10 @@
   dependencies:
     "@types/yargs-parser" "*"
 
-"@zbtickets/common@1.1.6":
-  version "1.1.6"
-  resolved "https://registry.yarnpkg.com/@zbtickets/common/-/common-1.1.6.tgz#1dca1ec2904152fb98df2a1d52b91feefa0f19bf"
-  integrity sha512-3IY5Iadx5Rbjv5oIy/ouSuplvUaX3LHCQ5TWLUqQoWUVCmEIZ9zyuqdVdubp4mS1MNJ+KaswhWnwBtAvieUcHg==
+"@zbtickets/common@1.1.9":
+  version "1.1.9"
+  resolved "https://registry.yarnpkg.com/@zbtickets/common/-/common-1.1.9.tgz#1c0ac4168518db93f5438d8c9e45812a443176bf"
+  integrity sha512-DrzU+C+Qj916FdEEtK/SwxuNeZvFvZtzhyRQepOR1Wk92rLkzh1on6532/SnFNFq3ZGnoe6jyqtq2vd/9YyRkA==
   dependencies:
     "@types/cookie-session" "^2.0.42"
     "@types/express" "^4.17.11"
