@@ -14,7 +14,7 @@ declare global {
   }
 }
 
-//? initializing fake nats server
+//? initializing fake nats server -- importing original instances
 jest.mock('../services/nats/nats-wrapper');
 // this method will replace a file (we provide it) with a file with same name in a mocks folders, somewhere located in a project
 
