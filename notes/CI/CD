@@ -1,0 +1,3 @@
+go to github repo 
+go to actions tab
+create a new workflow and rename to test.yml // we are doing it to run tests
