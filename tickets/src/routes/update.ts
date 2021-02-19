@@ -3,6 +3,7 @@ import {
   requireAuth,
   NotFoundError,
   NotAuthorizedError,
+  RequestValidationError,
   BadRequestException,
 } from '@zbtickets/common';
 import { validateAuthInput } from '../services/validate-input';
@@ -18,7 +19,7 @@ router.put(
     const { title, price } = req.body;
 
     const error = validateAuthInput({ title, price });
-    if (error) throw new Error(error);
+    if (error) throw new RequestValidationError(error);
 
     const ticket = await Ticket.findById(req.params.id);
     if (!ticket) throw new NotFoundError();

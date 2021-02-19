@@ -47,7 +47,6 @@ it('returns an error if user tries to fetch another users order', async () => {
     .set('Cookie', user)
     .send({ ticketId: ticket.id })
     .expect(201);
-  console.log(order.body);
 
   //* make request to fetch the ticket
   const anotherUser = global.signUp();

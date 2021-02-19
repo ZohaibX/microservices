@@ -3,8 +3,10 @@ import express, { Request, Response } from 'express';
 import { Ticket } from '../model/ticket';
 const router = express.Router();
 
-router.get('/api/tickets', requireAuth, async (req: Request, res: Response) => {
-  const tickets = await Ticket.find({});
+router.get('/api/tickets', async (req: Request, res: Response) => {
+  const tickets = await Ticket.find({
+    orderId: undefined,
+  });
   // console.log('I am at the route and i got tickets: ', tickets);
 
   if (!tickets) throw new NotFoundError();

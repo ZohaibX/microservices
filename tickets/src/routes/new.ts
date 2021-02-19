@@ -1,4 +1,4 @@
-import { requireAuth } from '@zbtickets/common';
+import { requireAuth, RequestValidationError } from '@zbtickets/common';
 import express, { Request, Response } from 'express';
 import { Ticket } from '../model/ticket';
 import { validateAuthInput } from '../services/validate-input';
@@ -14,7 +14,7 @@ router.post(
     const { title, price } = req.body;
 
     const error = validateAuthInput({ title, price });
-    if (error) throw new Error(error);
+    if (error) throw new RequestValidationError(error);
 
     const ticket = Ticket.build({
       title,

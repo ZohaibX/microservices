@@ -31,7 +31,9 @@ AppComponent.getInitialProps = async (appContext: AppContext) => {
 
   let pageProps = {};
   if (appContext.Component.getInitialProps) {
-    pageProps = await appContext.Component.getInitialProps(appContext.ctx);
+    pageProps = await appContext.Component.getInitialProps(
+      appContext.ctx
+    );
     // this App component refers to the page where we are
     // this if method is to invoke the getInitialProps function of the page where we are
   }

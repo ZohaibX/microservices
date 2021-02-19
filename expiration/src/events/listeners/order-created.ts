@@ -11,7 +11,7 @@ export class OrderCreatedListener extends Listener<OrderCreatedEvent> {
     const delay = new Date(data.expiresAt).getTime() - new Date().getTime();
     // new Date(data.expiresAt).getTime() will give us saved time in milli-seconds
     // new Date().getTime() will give us current time in milli-seconds
-    console.log('!!!!!!!!!!!!!!!! delay time is: ', delay); // it would be in ms -- so delay/1000= seconds
+    console.log('delay time is: ', delay); // it would be in ms -- so delay/1000= seconds
 
     //? expiresAt property has saved specific timing in new.ts file
 

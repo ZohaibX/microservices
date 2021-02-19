@@ -7,6 +7,7 @@ const Header = ({ userData }: { userData: UserData }) => {
   const links = [
     !userData && { label: 'Sign Up', href: '/auth/signUp' },
     !userData && { label: 'Sign In', href: '/auth/signIn' },
+    userData && { label: 'My Orders', href: '/orders/' },
     userData && { label: 'Sign Out', href: '/auth/signOut' },
   ]
     .filter((trueLinks) => trueLinks) // it will return only trues

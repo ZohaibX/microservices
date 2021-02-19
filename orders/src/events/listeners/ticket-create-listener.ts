@@ -11,7 +11,6 @@ export class TicketCreateListener extends Listener<TicketCreateEvent> {
 
   async onMessage(data: TicketCreateEvent['data'], msg: Message) {
     const { id, title, price } = data; // we are only receiving data, we need to save on our database
-    console.log('Im here on this file ');
 
     const ticket = Ticket.build({
       id,

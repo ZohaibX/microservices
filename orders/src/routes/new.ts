@@ -3,6 +3,7 @@ import {
   requireAuth,
   OrderStatus,
   BadRequestException,
+  RequestValidationError,
 } from '@zbtickets/common';
 import express, { Request, Response } from 'express';
 import { Order } from '../model/orders';
@@ -13,11 +14,10 @@ const router = express.Router();
 
 router.post('/api/orders', requireAuth, async (req: Request, res: Response) => {
   if (!req.body.ticketId || req.body.ticketId === '')
-    throw new Error('Ticket ID must be provided');
+    throw new RequestValidationError('Ticket ID must be provided');
 
   //* Find the ticket user is trying to order
   const ticket = await Ticket.findById(req.body.ticketId);
-  console.log(ticket);
 
   if (!ticket) throw new NotFoundError();
 

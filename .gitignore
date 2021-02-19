@@ -1,0 +1,2 @@
+node_modules
+# i can simply add this at root path and then no need to add it in a single service

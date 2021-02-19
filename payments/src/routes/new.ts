@@ -5,6 +5,7 @@ import {
   NotAuthorizedError,
   NotFoundError,
   OrderStatus,
+  RequestValidationError,
 } from '@zbtickets/common';
 import { validateInput } from '../services/validate-input';
 import { Order } from '../model/order';
@@ -22,7 +23,7 @@ router.post(
   requireAuth,
   async (req: Request, res: Response) => {
     const error = validateInput(req.body);
-    if (error) throw new Error(error);
+    if (error) throw new RequestValidationError(error);
 
     // note - token will be provided by the frontend of the stripe
     const { orderId, token } = req.body;
