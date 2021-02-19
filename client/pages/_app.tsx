@@ -9,7 +9,7 @@ import Header from '../components/header';
 
 // this is a global wrapper of each page -- it will wrap every page with global css like things
 const AppComponent = ({ Component, pageProps, userData }: any) => {
-  console.log(userData.email);
+  // console.log(userData.email);
 
   return (
     <div>

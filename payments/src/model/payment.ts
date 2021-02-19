@@ -49,9 +49,7 @@ const PaymentSchema = new mongoose.Schema<PaymentDoc, PaymentModel>(
 //? this is to apply ts type checking on the attributes -- we provide while creating -- ex at (1)
 // important - this build method is different than normal , to apply versioning
 PaymentSchema.statics.build = (attrs: PaymentAttrs) => {
-  return new Payment({
-    attrs,
-  });
+  return new Payment(attrs);
 };
 
 const Payment = mongoose.model<PaymentDoc, PaymentModel>(

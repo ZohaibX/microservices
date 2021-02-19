@@ -65,8 +65,7 @@ it('makes payment -- returns 204 with valid input', async () => {
   await request(app)
     .post('/api/payments')
     .set('Cookie', global.signUp(userId)) // this is how we match the ID
-    .send({ token: 'tok_visa', orderId: order.id })
-    .expect(201);
+    .send({ token: 'tok_visa', orderId: order.id });
 
   //!!!!! this is how we can test mock method results -- for natsWrapper too
   const chargedResult = (stripe.charges.create as jest.Mock).mock.calls[0][0];
@@ -87,8 +86,7 @@ it('saves the charge into the Payment model', async () => {
   await request(app)
     .post('/api/payments')
     .set('Cookie', global.signUp(userId)) // this is how we match the ID
-    .send({ token: 'tok_visa', orderId: order.id })
-    .expect(201);
+    .send({ token: 'tok_visa', orderId: order.id });
 
   const payment = await Payment.findOne({ orderId: order.id });
   expect(payment).toBeDefined();
