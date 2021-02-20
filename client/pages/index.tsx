@@ -8,7 +8,7 @@ interface HomeProps {
 
 // i can write interface rather than using 'any'
 const Home = ({ userData, tickets }: HomeProps) => {
-  console.log('tickets: ', tickets);
+  console.log('tickets::: ', tickets);
 
   return (
     <div className='container'>

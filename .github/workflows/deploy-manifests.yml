@@ -17,7 +17,6 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v2
-      # - run: kubectl apply -f infrastructure/k8s && kubectl apply -f infrastructure/k8s-prod
 
       # Setup gcloud CLI
       - uses: google-github-actions/setup-gcloud@v0.2.0

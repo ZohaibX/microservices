@@ -11,5 +11,5 @@ natsConnection();
 database();
 
 app.listen(3000, () => {
-  console.log('App is listening on the port 3000!');
+  console.log('App is listening on the port 3000!!');
 });
