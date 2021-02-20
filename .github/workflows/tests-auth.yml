@@ -1,5 +1,5 @@
 # name of the file 
-name: tests
+name: tests-auth
 
 on: 
   pull_request # will run only when pull request is made or updated
