@@ -1,0 +1,12 @@
+# name of the file 
+name: tests-tickets
+
+on: 
+  pull_request # will run only when pull request is made or updated
+  
+jobs: 
+  build: 
+    runs-on: ubuntu-latest # will run on ubuntu 
+    steps: 
+      - uses: actions/checkout@v2 # first of all - get all the code here 
+      - run: cd tickets && yarn install && yarn test:ci
