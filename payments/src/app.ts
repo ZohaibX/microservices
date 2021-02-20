@@ -22,7 +22,8 @@ app.use(
     signed: false, // we are not encrypting our cookie bcoz we are gonna send jwt (which is itself encrypted) inside that cookie
     // but if we have to make it more secured-- we can sign the cookie -- example at express repo in github
     // reason is -- if we use different backend languages in MS's - then it would be difficult for other languages to decrypt the cookie
-    secure: process.env.NODE_ENV !== 'test',
+    // secure: process.env.NODE_ENV !== 'test',
+    //? make it secure when having https 
     // secure means cookie session will only work on the https connection
   })
 );
