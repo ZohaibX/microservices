@@ -8,13 +8,7 @@ metadata:
     nginx.ingress.kubernetes.io/use-regex: 'true'
 spec:
   rules:
-    - host: ticketing.dev # i can use any fake domain name which will work only in my machine
-      # for host -- go to C:\Windows\System32\drivers\etc and then open hosts file in VS code as an administrator
-      # and after the # END OF SECTION . put 127.0.0.1 [fake-host-name]
-      # sample file in Notes
-      #! page will not open for this fake host and will show error --
-      #! we need to tap anywhere on the screen and write from the keyboard 'thisisunsafe'
-      http:
+    - http:
         paths:
           - path: /api/users/?(.*)
             backend:
