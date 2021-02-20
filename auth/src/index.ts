@@ -7,6 +7,9 @@ if (!process.env.JWT_KEY)
   throw new Error('process.env.JWT_KEY is not defined ');
 
 app.listen(3000, () => {
+  console.log('====================================');
+  console.log("Starting Up");
+  console.log('====================================');
   console.log('App is listening on the port 3000!');
 });
 
