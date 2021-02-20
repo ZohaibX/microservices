@@ -1,1 +1,3 @@
  - First Create a kubernetes cluster with the required properties in Digital Ocean 
+
+ Stephen Grider Microservices Course / 23 Folder CI/CD / 11,12,17]
