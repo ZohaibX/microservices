@@ -1,0 +1,14 @@
+# name of the file
+name: tests-orders
+
+on:
+  pull_request: # will run only when pull request is made or updated
+    paths: # run the job only when changes on this path has applied
+      - 'orders/**'
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # will run on ubuntu
+    steps:
+      - uses: actions/checkout@v2 # first of all - get all the code here
+      - run: cd orders && yarn install && yarn test:ci
