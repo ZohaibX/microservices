@@ -1,11 +1,11 @@
-name: deploy-auth #! Change This
+name: deploy-payments #! Change This
 
 on:
   push: # when we pull and merge the code from some other branch to main -- it also refers as a push -- and we merge the branch -- only after testing everything
     branches:
       - main
     paths:
-      - 'auth/**' #! Change This
+      - 'payments/**' #! Change This
 
 env:
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
@@ -47,19 +47,19 @@ jobs:
 
       # Build the Docker image
       - name: Build
-        run: cd auth && docker build -t 03004968719/ms-auth:${{ github.sha }} . && docker build -t 03004968719/ms-auth:latest .
+        run: cd payments && docker build -t 03004968719/ms-payments:${{ github.sha }} . && docker build -t 03004968719/ms-payments:latest .
       #! Change This
 
       # Push the Docker image to Google Container Registry
       - name: Publish
-        run: docker push 03004968719/ms-auth:${{ github.sha }} && docker push 03004968719/ms-auth:latest
+        run: docker push 03004968719/ms-payments:${{ github.sha }} && docker push 03004968719/ms-payments:latest
       #! Change This
 
       # Deploy the Docker image to the GKE cluster
       - name: Deploy
         run: |-
-          kubectl set image deployments/auth-depl auth=03004968719/ms-auth:${{ github.sha }}
-          kubectl apply -f infrastructure/k8s/auth-depl.yaml
-          kubectl rollout restart deployment auth-depl # restart, so it can use newest image
+          kubectl set image deployments/payments-depl payments=03004968719/ms-payments:${{ github.sha }}
+          kubectl apply -f infrastructure/k8s/payments-depl.yaml
+          kubectl rollout restart deployment payments-depl # restart, so it can use newest image
           kubectl get services -o wide
       #! Change This
