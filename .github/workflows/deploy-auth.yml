@@ -52,12 +52,12 @@ jobs:
 
       # Build the Docker image
       - name: Build
-        run: cd auth && docker build -t 03004968719/ms-auth:$SHA .
+        run: cd auth && docker build -t 03004968719/ms-auth:${{ github.sha }} .
 
       # Push the Docker image to Google Container Registry
       - name: Publish
         run: |-
-          docker push 03004968719/ms-auth:$SHA
+          docker push 03004968719/ms-auth:${{ github.sha }}
 
       # Set up kustomize
       - name: Set up Kustomize
@@ -68,7 +68,7 @@ jobs:
       # Deploy the Docker image to the GKE cluster
       - name: Deploy
         run: |-
-          ./kustomize edit set image 03004968719/ms-auth:$SHA
+          ./kustomize edit set image 03004968719/ms-auth:${{ github.sha }}
           ./kustomize build . | kubectl apply -f infrastructure/k8s/auth-depl.yaml
           kubectl rollout status deployment/$DEPLOYMENT_NAME
           kubectl get services -o wide
