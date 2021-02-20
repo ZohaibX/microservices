@@ -13,3 +13,10 @@ may be we will be needed to to docker login to push that
 // tell all the services, not to show anything to a banned user
 
 // Persistent Volume Claim
+
+// Routes Redirection
+
+// add kubernetes deployment notes -- full fledged -- Digital Ocean 
+
+// Add GCE
+

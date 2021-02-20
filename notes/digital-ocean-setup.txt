@@ -1,0 +1,1 @@
+ - First Create a kubernetes cluster with the required properties in Digital Ocean 
