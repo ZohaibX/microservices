@@ -25,18 +25,18 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v2
 
-      # Setup gcloud CLI
+      #? Setup gcloud CLI -- By GitHub
       - uses: google-github-actions/setup-gcloud@v0.2.0
         with:
           service_account_key: ${{ secrets.GKE_SA_KEY }}
           project_id: ${{ secrets.GKE_PROJECT }}
 
-      # Configure Docker to use the gcloud command-line tool as a credential
+      #? Configure Docker to use the gcloud command-line tool as a credential
       # helper for authentication
       - run: |-
           gcloud --quiet auth configure-docker
 
-      # Get the GKE credentials so we can deploy to the cluster
+      #? Get the GKE credentials so we can deploy to the cluster -- By GitHub -- By GitHub
       - uses: google-github-actions/get-gke-credentials@v0.2.1
         with:
           cluster_name: ${{ env.GKE_CLUSTER }}
@@ -49,23 +49,18 @@ jobs:
 
       # Build the Docker image
       - name: Build
-        run: cd auth && docker build -t 03004968719/ms-auth:${{ github.sha }} .
-        # run: |-
-        #   docker build \
-        #     --tag "gcr.io/$PROJECT_ID/$IMAGE:$GITHUB_SHA" \
-        #     --build-arg GITHUB_SHA="$GITHUB_SHA" \
-        #     --build-arg GITHUB_REF="$GITHUB_REF" \
-        #     .
+        run: cd auth && docker build -t 03004968719/ms-auth:${{ github.sha }} . && docker build -t 03004968719/ms-auth:latest .
 
       # Push the Docker image to Google Container Registry
       - name: Publish
-        run: docker push 03004968719/ms-auth:${{ github.sha }}
+        run: docker push 03004968719/ms-auth:${{ github.sha }} && docker push 03004968719/ms-auth:latest
 
       # Deploy the Docker image to the GKE cluster
       - name: Deploy
         run: |-
+          kubectl set image deployments/auth-depl auth=03004968719/ms-auth:${{ github.sha }}
           kubectl apply -f infrastructure/k8s/auth-depl.yaml
-          kubectl rollout restart deployment auth-depl
+          kubectl rollout restart deployment auth-depl # restart, so it can use newest image
           kubectl get services -o wide
 
 # jobs:
