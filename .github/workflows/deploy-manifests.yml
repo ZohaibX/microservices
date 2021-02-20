@@ -1,0 +1,15 @@
+name: deploy-manifests
+
+on:
+  push: # when we pull and merge the code from some other branch to main -- it also refers as a push -- and we merge the branch -- only after testing everything
+    branches: 
+      - main
+    paths: 
+      - 'infrastructure/**'
+
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - run: kubectl apply -f infrastructure/k8s  
