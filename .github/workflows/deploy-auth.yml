@@ -1,0 +1,21 @@
+
+name: deploy-auth
+
+on:
+  push: # when we pull and merge the code from some other branch to main -- it also refers as a push -- and we merge the branch -- only after testing everything
+    branches: 
+      - main
+    paths: 
+      - 'auth/**'
+
+jobs:
+  build: 
+    runs-on: ubuntu-latest
+    steps: 
+      - uses: actions/checkout@v2
+      - run: cd auth && docker build -t 03004968719/ms-auth .
+      - run: docker login -u $DOCKER_USERNAME -p $DOCKER_PASSWORD 
+        env: 
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }} # double check the spellings 
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - run: docker push 03004968719/ms-auth  
