@@ -11,3 +11,25 @@ there should be 4vcpu and 4GB ram
 and storage should be standard persistent disk 
 
 configure everything that is necessary and create a kubernetes cluster
+
+
+GKE Commands 
+#! Important -- all in google cloud console
+# write these lines from before_install section to google cloud built-in terminal
+
+# gcloud config set project [id]
+# gcloud config set compute/zone [zone]
+# gcloud container clusters get-credentials [name]
+
+# then we will create a secret password for postgres database
+# kubectl create secret generic pgpassword --from-literal PGPASSWORD=12345678
+# kubectl create secret generic mongostring --from-literal MONGOSTRING=mongodb+srv://zohaib:1234@cluster0-vvrwq.mongodb.net/events?retryWrites=true&w=majority
+
+# download Helm in cloud console terminal. write 3 next commands in the terminal
+# curl https://raw.githubusercontent.com/helm/helm/master/scripts/get-helm-3 > get_helm.sh
+# chmod 700 get_helm.sh
+# ./get_helm.sh
+
+# Install Ingress-Nginx - by writing some commands on the cloud console terminal
+# helm repo add stable https://charts.helm.sh/stable
+# helm install my-nginx stable/nginx-ingress --set rbac.create=true
