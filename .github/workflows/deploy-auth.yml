@@ -8,9 +8,6 @@ on:
       - 'auth/**'
 
 env:
-  global:
-    - SHA=$(git rev-parse HEAD) # this is command to get the ID of latest commit of this project -- this will always be different for different commits
-    - CLOUDSDK_CORE_DISABLE_PROMPTS=1 # special command is for gcloud commands below
   PROJECT_ID: ${{ secrets.GKE_PROJECT }}
   GKE_CLUSTER: micro-services
   GKE_ZONE: us-central1-c
