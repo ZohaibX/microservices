@@ -7,6 +7,7 @@ deploy:
   kubectl:
     manifests:
       - ./infrastructure/k8s/* # it will watch k8s for changes
+      - ./infrastructure/k8s-dev/* # it will watch k8s for changes
 build:
   local:
     push: false # every container we build will not be automatically deployed to dockerhub
