@@ -14,7 +14,10 @@ and for every channel, we must have an interface describing their behavior
 
 we could update channels and their interfaces time to time 
 
-so we made create publishers methods like we did in tickets/events
-and we  used them in new.ts and update.ts 
+We will create publisher in one service and will create listeners in other services where we wanna listen that msg 
+
+We will have base publisher and listener classes , subjects 
+and all events interfaces (for publishing and listening ) msgs
+in our common directory, which will be our npm module too ..
 
 

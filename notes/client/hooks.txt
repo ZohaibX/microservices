@@ -1,0 +1,8 @@
+We have create a custom hook named use-request
+that is a normal hook 
+we are giving it request method , body and url 
+it will return us request function, we only need to make a call to it 
+it will also return us errors if they exist 
+
+whenever, we will hae to communicate backend
+we will use this hook 

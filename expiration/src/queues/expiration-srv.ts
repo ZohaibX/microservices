@@ -2,6 +2,14 @@ import Queue from 'bull';
 import { ExpirationCompletedPublisher } from '../events/publishers/expiration-complete';
 import { natsWrapper } from '../services/nats/nats-wrapper';
 
+/*
+when creating an order , we will assign it time, for example 15 minutes 
+we will tell expiration srv that an order is created 
+expiration service will findout how much time, order has assigned 
+and right after 15 minutes (or the time we have assigned )
+expiration srv will publish a msg to orders srv, that expiration is done
+then, order srv will decide that order is payed or not  
+*/
 /*  
  Main theme of this file is -- we want to publish an event that order is expired 
  when the order is created, we will get that through the listener

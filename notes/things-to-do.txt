@@ -1,3 +1,0 @@
-Persistent Volume Claim 
-postgres 
-gql

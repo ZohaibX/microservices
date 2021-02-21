@@ -1,4 +1,6 @@
-First Install cert manager in kubernetes cluster on google cloud 
+Repo -- https://github.com/ZohaibX/docker-vidly
+
+First Install cert manager hopefully in kubernetes cluster on google cloud 
 in the console
 
 official docs :-
@@ -34,14 +36,13 @@ helm install \
   --version v0.11.0 \
   jetstack/cert-manager
 
-Then create certificate and issuer file in the k8s directory and after configuring 
-push the code and when travis do all of the work and again deploy into the gcloud 
-in the services and workloads section of the kubernetes cluster in google cloud
+!!!! Then create certificate and issuer file in the k8s directory -- from https://github.com/ZohaibX/docker-vidly to k8s-prod
+after all CI/CD -- in gcloud workloads 
 i'll see cert related services
 
-then in the gcloud console 
+then, in the gcloud console 
 i can see kubectl get certificates and then describe it to further analyze
 
-
-Then i will start configuring ingress-service file for https 
+!!!! Then i will start configuring ingress-service file for https -- from https://github.com/ZohaibX/docker-vidly
 and after configuring that file, i will have to push that again
+

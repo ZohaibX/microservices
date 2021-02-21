@@ -1,0 +1,24 @@
+Point 1 :- ID params
+  id extraction in the params -- next js -- is used in [orderId].tsx 
+  and fetching data with that id is also there
+
+Point 2 :- Expiration
+  in backend, expiration service -- we set the expire time 
+  in frontend, showing the count down according to the time left , coming from backend
+  in [orderId].tsx file 
+
+Point 3 :- Stripe Checkout
+  Stripe Checkout for frontend is used in [orderId]
+  more properties, to send with stripe are defined in https://www.npmjs.com/package/react-stripe-checkout
+  and we will get the token in the same StripeCheckout Component
+
+Point 4 :- OnBlur 
+  this property is used in new-ticket.tsx
+  when we select the input field 
+  OnBlur property will be invoked after deselecting that input field 
+
+Point 5 :- Price Round off 
+  numbers round off is done inside of OnBlur fn in new-ticket.tsx
+
+  
+

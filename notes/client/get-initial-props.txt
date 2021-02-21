@@ -1,0 +1,40 @@
+
+                             !!! getInitialProps !!!
+
+Important Point
+  whenever we go to any backend side route like 'api/users/currentUser'
+  or some client side route 'auth/signUp'
+  https://ticketing.dev will be automatically assigned to that routes
+  in node and normal javascript both
+
+Important Notes - Specifically for K8s
+  normally, we request to https://ticketing.dev
+  it goes to computer and computer translates ticketing.dev into localhost or 127.0.0.1:80
+  this route goes to ingress-nginx , and nginx will return data for '/' route and everything is fine
+  then at some point, we request to some other micro service like auth - https://ticketing.dev/api/user/currentUser
+  and same process will happen again for auth service
+
+Problem :-
+  in next js and in getInitialProps, when we fetch currentUser in getInitialProps .
+  we request to https://ticketing.dev/api/users/currentUser
+
+  it goes to computer and computer translates ticketing.dev into localhost or 127.0.0.1:80
+  request becomes localhost/api/users/currentUser
+  this route goes to ingress-nginx and it will go inside!!!! client side container!!! as its route is '/'
+
+  then, it will see there is one more backend request inside!!! client side container!!!, 
+  then that request will also become -- localhost/requestApi
+  but this time!! we are already inside!!! client side container!!! . and inside here, localhost is bound to this container only 
+  so we can't make a request to other container using localhost/api route lying inside!!! of client container 
+
+Solution :-
+  we will directly make request to ingress nginx and that will take us to different services
+  normally , we have different namespaces in k8s
+  and we use default namespace for all the cluster
+  but ingress-service is always in a different namespace
+  so to make a request to a service , which is in different namespace
+  we will route on 'http://ServiceName.NameSpace.svc.cluster.local/blahblahblah' + header property
+  kubectl get namespaces  // we will get namespace for ingress-service
+  kubectl get services -n [namespace] // to get name of the service in the other namespace
+  header property is to tell nginx to apply same rules here as we expected for ticketing.dev bcoz we have host: ticketing.dev property in headers
+  and we have cookie in headers

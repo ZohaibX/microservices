@@ -39,6 +39,7 @@ router.post(
     if (order.status === OrderStatus.Cancelled)
       throw new BadRequestException('Order is already cancelled');
 
+    //? more properties are defined in my stripe repo
     //! for testing in postman - fake token is "tok_visa"
     //! for chrome -- it is something like 4242 4242 4242 4242 and more
     let charge = await stripe.charges.create({

@@ -13,6 +13,8 @@ const OrderShow = ({ order, userData }: any) => {
   );
 
   useEffect(() => {
+
+    // this fn will set timeLeft variable everytime when it runs 
     const findTimeLeft = () => {
       const milliSecondsLeft =
         new Date(order.expiresAt).getTime() - new Date().getTime();
@@ -25,7 +27,7 @@ const OrderShow = ({ order, userData }: any) => {
     return () => {
       clearInterval(timerId);
     }; // return is to stop the time interval whenever we navigate to some other component
-  }, [order]); // useEffect will run for order
+  }, [order]); // useEffect will run for order , and on the start 
 
   if (timeLeft < 0)
     return (
@@ -61,7 +63,7 @@ const OrderShow = ({ order, userData }: any) => {
 export default OrderShow;
 
 OrderShow.getInitialProps = async (context: any) => {
-  const { orderId } = context.query; // thats how we will extract id for this page
+  const { orderId } = context.query; //!!!! thats how we will extract id for this page
   const client = BuildClient(context);
   const { data } = await client.get(`/api/orders/${orderId}`);
 

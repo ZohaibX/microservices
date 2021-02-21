@@ -1,9 +1,4 @@
-all docker images must be hosted to docker hub before we deploy the project to GCE 
-
-may be we will be needed to to docker login to push that
-
-
-// create a note, listing all the features of this project 
+// create a note, listing all the features of this project -- DONE 
 
 // add timing to jwt
 
@@ -16,7 +11,29 @@ may be we will be needed to to docker login to push that
 
 // Routes Redirection
 
-// add kubernetes deployment notes -- full fledged -- Digital Ocean 
+// add kubernetes deployment notes -- full fledged -- DONE 
 
 // Add GCE
+
+// Direction Note to HTTPS Connection -- DONE 
+
+// add CI/CD all details -- DONE 
+
+// REDUX
+
+// HTTPS 
+
+// POSTGRES 
+// prepare setup.ts file for that 
+
+// OAUTH 
+
+// PASSPORT 
+
+// GQL ON NEXT AND ON SOME SERVICE 
+
+// REDIS AGAIN -- FULL FLEDGED 
+
+// STRIPE ALL DETAILS 
+
 
