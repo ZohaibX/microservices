@@ -1,0 +1,45 @@
+
+Backend:::::::::::---------
+We must use TDD approach 
+All Images must be deployed to dockerhub when deploying the code 
+
+packages 
+  typescript ts-node-dev express @types/express cors body-parser
+
+
+TS
+  tsc --init -> to generate tsconfig.json
+  change in start script
+
+Points :-
+  Create a very first directory for any service like auth..
+  and just do some basics with any basic route.. 
+  tsconfig .dockerignore  Dockerfile package.json 
+  test_folder(where special test code is located) index.ts and app.ts (from this project or so )
+  copy services folder and do required changes 
+  Must!! change name of the project in package.json and include exclude npm modules
+  do yarn install
+  do the changes in the copied files to exclude errors
+  Build Image and push to docker hub (push if possible)  
+  create depl.yaml file and copy from previous micro-service and change the service names  
+  create mongo-depl file and copy from previous micro service and change the service names 
+  add persitent volume claim if necessary
+  create or update ingress-service
+  add the service to ingress-service
+  create or update skaffold.yaml, and do skaffold dev in terminal
+  go to src/test/setup.ts and change the global.signIn fn (auth service setup is changed than others) 
+
+and then host will be online 
+
+Frontend:::::::::::::-------------
+
+yarn create next-app client  
+tsc --init -> to generate tsconfig.json
+follow the link to add ts --> https://nextjs.org/docs/basic-features/typescript
+after setting next js -- create Dockerfile and docker ignore file 
+build and PUSH the image  (push it is not mandatory in dev mode (if not having good internet)) 
+then we have 3 things to do, add this service in k8s depl file, ingress srv file and Skaffold 
+
+//!! must run this on skaffold dev , not on local env
+
+add next.config.js file from here

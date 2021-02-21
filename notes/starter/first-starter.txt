@@ -1,0 +1,24 @@
+1st starter for every micro service
+   create a folder 
+   create package.json and install dependencies 
+   create Dockerfile
+   create src folder and write index.ts 
+   Build Image and push to docker hub (push if possible) 
+   write k8s file for deployment and service 
+   write k8s for mongodb deployment and service / or other postgres service
+   // add persitent volume claim if necessary
+   add the service to ingress-service
+   update skaffold for this service 
+
+shortcuts - copy pasting
+  copy tsconfig .dockerignore  Dockerfile package.json 
+  and then src folder => test_folder(where special test code is located) index.ts and app.ts 
+  copy services folder and do required changes 
+  Must!! change name of the project in package.json
+  do yarn install
+  do the changes in the copied files to exclude errors 
+  Build Image and push to docker hub (push if possible) 
+  create depl.yaml file and copy from previous micro-service and change the service names  
+  create mongo-depl file and copy from previous micro service and change the service names 
+  update skaffold.yaml,
+  go to src/test/setup.ts and change the global.signIn fn (auth service setup is changed than others) 

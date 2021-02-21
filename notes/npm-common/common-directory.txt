@@ -40,7 +40,7 @@ we will add a script
 then we will go to tsconfig file and uncomment the declaration property which is true 
 we will uncomment the outDir property and change it to "./build"
 
-create a src folder and a ts file in there Must!
+create a src folder and a ts file  Must! , to run build command
 then run the command -- yarn build 
 
 add this in package.json 
@@ -49,11 +49,13 @@ add this in package.json
 "files": [
         "build/**/*"
 ],
+
 that means main file coming by installing the package would be index.js and so for types file 
 and build/**/* are going to publish 
 
 create .gitignore and add build and node_modules
 
+DO ALWAYS :-
 
 we will do yarn build 
 yarn version
@@ -61,6 +63,14 @@ we will do git add commit
 and then npm publish --access public  
 
 
-now i can do yarn add @zbtickets/common any where and install its methods 
+now i can do yarn add @zbtickets/common:version any where and install its methods 
 and if we have already installed this package, we will need to upgrade that , to have exact version 
 yarn upgrade @zbtickets/common
+
+
+-----------------------------What we have Inside Common Dir-------------------------------
+All the middlewares -- keep only those, we don't have to change 
+Custom Errors
+Events 
+Enums 
+ 

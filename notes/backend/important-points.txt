@@ -1,0 +1,29 @@
+  
+=> We have Auth Module very good
+
+=> test folder/ setup.ts file mast hai
+   pre setup for testing 
+   global.signUp() fn is changed for auth srv in setup.ts
+
+=> mock methods for nats connection and stripe connection are defined
+   stripe connection is defined in setup.ts of payments srv
+   so they don't use actual connections 
+
+=> expiration srv is defined 
+   to store the time, user has left. to pay for the order 
+
+==> when creating an order , we will assign it time, for example 15 minutes 
+    we will tell expiration srv that an order is created 
+    expiration service will findout how much time, order has assigned 
+    and right after 15 minutes (or the time we have assigned )
+    expiration srv's listener will publish a msg to orders srv, that expiration is done
+    then, order srv will decide that order is payed or not 
+
+==> Ref is used in orders model -- to have a reference of ticket object
+
+==> Stripe is used in Payments/new.ts and more details are in 
+    stripe repo 
+    
+
+
+

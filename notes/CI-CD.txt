@@ -1,7 +1,0 @@
-go to github repo 
-go to actions tab
-create a new workflow and rename to test.yml // we are doing it to run tests
-
-add multiple workflows // so all the tests will run parallel
-
-do git branching and pull requests 

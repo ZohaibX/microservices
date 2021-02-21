@@ -33,3 +33,12 @@ GKE Commands
 # Install Ingress-Nginx - by writing some commands on the cloud console terminal
 # helm repo add stable https://charts.helm.sh/stable
 # helm install my-nginx stable/nginx-ingress --set rbac.create=true
+
+                     ---------- nginx-ingress ------------
+official docs https://kubernetes.github.io/ingress-nginx/deploy/#provider-specific-steps
+(1) - docker for mac command is to run, which is as same as for windows 
+to see if service is enabled -- 
+(2) - kubectl get svc -n ingress-nginx
+=> Then, we have different commands for every environment
+   - (3) for!!!!!! google cloud, we have GCE-GKE command 
+   - and other commands for aws and azure 

@@ -1,0 +1,13 @@
+api folder will handle building client 
+it will decide that if we are in server or we are in client -- sides of next js 
+
+if we are in server side of next js and we are gonna send request to backend
+we will send that thru ingress nginx
+
+and if we are in client side of next and we are to send req to backend 
+we will simply send the request 
+
+
+---
+
+More documentation is in getInitialProps Notes 

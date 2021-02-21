@@ -1,0 +1,12 @@
+Add Workflows for testing 
+
+Add Workflows for deployment
+
+There are always some starter Workflows for different environments 
+as i made one for GKE 
+
+deployment scene should be same for all environments possibly
+Docker login , build , push , deploy and kubernetes restart 
+all other configurations were already available in github ready made Workflow for GKE 
+
+for Digital Ocean , Microservices Course By Stephen Grider and then , CI/CD folder then 11 to onward videos 
