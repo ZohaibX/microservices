@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: ssr-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: ssr
+  template:
+    metadata:
+      labels:
+        app: ssr
+    spec:
+      containers:
+        - name: ssr
+          image: 03004968719/ms-ssr
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: ssr-service
+spec:
+  selector:
+    app: ssr
+  ports:
+    - name: ssr
+      protocol: TCP
+      port: 3000
+      targetPort: 3000 # every service will be in 3000

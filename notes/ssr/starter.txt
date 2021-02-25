@@ -1,0 +1,14 @@
+-- get package.json file as we have here
+yarn install 
+create index.js 
+
+install dependencies , tsc file , .babelrc file and webpack.config.js file from the reference of
+https://github.com/microsoft/TypeScript-Babel-Starter or from this project 
+
+=> babel dependencies in package.json must be same like this to run it 
+
+dockerfile and docker-ignore file 
+
+k8s depl file
+add ingress-srv configuration
+skaffold 

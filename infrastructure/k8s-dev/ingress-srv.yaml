@@ -32,7 +32,13 @@ spec:
             backend:
               serviceName: payments-service # actual service file name
               servicePort: 3000 # actual service file port
-          - path: /?(.*) #! this service must b at the bottom of all - bcoz if some request comes for /api/user -- it will directly go to this service
+          - path: /?(.*) # idk but ssr is not leaving this exact route
             backend:
-              serviceName: client-srv # actual service file name
+              serviceName: ssr-service # actual service file name
               servicePort: 3000 # actual service file port
+          # - path: /?(.*) #! this service must b at the bottom of all - bcoz if some request comes for /api/user -- it will directly go to this service
+          #   backend:
+          #     serviceName: client-srv # actual service file name
+          #     servicePort: 3000 # actual service file port
+
+          #! Only one of the client-srv could hold /?(.*) path
