@@ -1,10 +1,16 @@
 import * as React from 'react';
+import { Link } from 'react-router-dom';
 
 const Home = () => {
   return (
-    <div> 
+    <div>
       <h1>Im a Home Component </h1>
-      <button onClick={() => console.log("You Pressed Me!")}>Press Me - !</button>
+      <button onClick={() => console.log('You Pressed Me!')}>
+        Press Me - !
+      </button>
+      <Link to='/tickets'>
+        <button>Get me to Tickets</button>
+      </Link>
     </div>
   );
 };
