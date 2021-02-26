@@ -1,15 +1,9 @@
-import React from 'react';
-import { Route } from 'react-router-dom';
 import Home from '../components/home';
-import Test from '../pages/test';
+import Tickets, { loadData } from './../pages/tickets';
 
-const Routes = () => {
-  return (
-    <div>
-      <Route exact path='/' component={Home} />
-      <Route path='/test' component={Test} />
-    </div>
-  );
-};
+const Routes = [
+  { path: '/', component: Home, exact: true },
+  { loadData, path: '/tickets', component: Tickets },
+];
 
 export default Routes;
