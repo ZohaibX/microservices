@@ -27,7 +27,7 @@ function loadData(store) {
   // return store.dispatch(fetchUsers());
   if (store) {
     if (store.dispatch) {
-      return store.dispatch(fetchUsers);
+      return store.dispatch(fetchUsers); // not calling
     }
   }
 }
