@@ -1,9 +1,9 @@
-import Home from '../components/home';
-import Tickets, { loadData } from './../pages/tickets';
+import Home from '../pages/home';
+import Tickets from './../pages/tickets';
 
 const Routes = [
-  { path: '/', component: Home, exact: true },
-  { loadData, path: '/tickets', component: Tickets },
+  { path: '/', ...Home, exact: true },
+  { path: '/tickets', ...Tickets },
 ];
 
 export default Routes;

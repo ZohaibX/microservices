@@ -60,7 +60,7 @@
 /******/ 	__webpack_require__.p = "";
 /******/
 /******/ 	// Load entry module and return exports
-/******/ 	return __webpack_require__(__webpack_require__.s = 6);
+/******/ 	return __webpack_require__(__webpack_require__.s = 7);
 /******/ })
 /************************************************************************/
 /******/ ([
@@ -80,19 +80,23 @@ module.exports = require("react-router-config");
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_home__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_tickets__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__pages_home__ = __webpack_require__(10);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__pages_tickets__ = __webpack_require__(11);
+function ownKeys(object, enumerableOnly) { var keys = Object.keys(object); if (Object.getOwnPropertySymbols) { var symbols = Object.getOwnPropertySymbols(object); if (enumerableOnly) symbols = symbols.filter(function (sym) { return Object.getOwnPropertyDescriptor(object, sym).enumerable; }); keys.push.apply(keys, symbols); } return keys; }
+
+function _objectSpread(target) { for (var i = 1; i < arguments.length; i++) { var source = arguments[i] != null ? arguments[i] : {}; if (i % 2) { ownKeys(Object(source), true).forEach(function (key) { _defineProperty(target, key, source[key]); }); } else if (Object.getOwnPropertyDescriptors) { Object.defineProperties(target, Object.getOwnPropertyDescriptors(source)); } else { ownKeys(Object(source)).forEach(function (key) { Object.defineProperty(target, key, Object.getOwnPropertyDescriptor(source, key)); }); } } return target; }
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
 
 
-var Routes = [{
-  path: '/',
-  component: __WEBPACK_IMPORTED_MODULE_0__components_home__["a" /* default */],
+
+var Routes = [_objectSpread(_objectSpread({
+  path: '/'
+}, __WEBPACK_IMPORTED_MODULE_0__pages_home__["a" /* default */]), {}, {
   exact: true
-}, {
-  loadData: __WEBPACK_IMPORTED_MODULE_1__pages_tickets__["b" /* loadData */],
-  path: '/tickets',
-  component: __WEBPACK_IMPORTED_MODULE_1__pages_tickets__["a" /* default */]
-}];
+}), _objectSpread({
+  path: '/tickets'
+}, __WEBPACK_IMPORTED_MODULE_1__pages_tickets__["a" /* default */])];
 /* harmony default export */ __webpack_exports__["a"] = (Routes);
 
 /***/ }),
@@ -103,188 +107,13 @@ module.exports = require("react-router-dom");
 
 /***/ }),
 /* 4 */
-/***/ (function(module, exports) {
-
-module.exports = require("react-redux");
-
-/***/ }),
-/* 5 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FETCH_USERS_SUCCESS; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FETCH_USERS_PENDING; });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FETCH_USERS_FAILED; });
-// export const UserToken = "UserToken";
-var FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS';
-var FETCH_USERS_PENDING = 'FETCH_USERS_PENDING';
-var FETCH_USERS_FAILED = 'FETCH_USERS_FAILED';
-
-/***/ }),
-/* 6 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_polyfill__ = __webpack_require__(7);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_polyfill___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_polyfill__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_express__ = __webpack_require__(8);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_express__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_config__ = __webpack_require__(1);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_config___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_router_config__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__client_routes_routes__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_for_server_renderer__ = __webpack_require__(14);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers_for_server_server_redux_store__ = __webpack_require__(16);
-//? serving as a root file for the server
- // to use async await
-
-
-
-
-
-
-var app = __WEBPACK_IMPORTED_MODULE_1_express___default()();
-app.use(__WEBPACK_IMPORTED_MODULE_1_express___default.a["static"]('public')); // very important line of code , to run js functionality
-// if "*" does not work , i can directly use ingress-nginx thru http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/*
-
-app.get('*', function (req, res) {
-  var store = Object(__WEBPACK_IMPORTED_MODULE_5__helpers_for_server_server_redux_store__["a" /* default */])(); // some logic to initialize and load data into store
-
-  var promises = Object(__WEBPACK_IMPORTED_MODULE_2_react_router_config__["matchRoutes"])(__WEBPACK_IMPORTED_MODULE_3__client_routes_routes__["a" /* default */], req.path).map(function (_ref) {
-    var route = _ref.route;
-    return route.loadData ? route.loadData(store) : null;
-  });
-  Promise.all(promises).then(function () {
-    res.send(Object(__WEBPACK_IMPORTED_MODULE_4__helpers_for_server_renderer__["a" /* default */])(req, store));
-  });
-});
-app.listen(3000, function () {
-  console.log('Server Side of SSR running on port -- 3000');
-});
-
-/***/ }),
-/* 7 */
-/***/ (function(module, exports) {
-
-module.exports = require("babel-polyfill");
-
-/***/ }),
-/* 8 */
-/***/ (function(module, exports) {
-
-module.exports = require("express");
-
-/***/ }),
-/* 9 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(3);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__);
-
-
-
-var Home = function Home() {
-  return /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null, /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, "Im a Home Component "), /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", {
-    onClick: function onClick() {
-      return console.log('You Pressed Me!');
-    }
-  }, "Press Me - !"), /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Link"], {
-    to: "/tickets"
-  }, /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", null, "Get me to Tickets")));
-};
-
-/* harmony default export */ __webpack_exports__["a"] = (Home);
-
-/***/ }),
-/* 10 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return loadData; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__redux_1_actions__ = __webpack_require__(12);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__redux_4_connect__ = __webpack_require__(11);
-
-
-
-
-var Tickets = function Tickets(props) {
-  Object(__WEBPACK_IMPORTED_MODULE_0_react__["useEffect"])(function () {
-    /* sync state with the URL */
-    props.fetchingUsers();
-  }, []); // console.log(props.users);
-
-  return /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, " Tickets "), /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("ul", null, props.users.map(function (user) {
-    return /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", {
-      key: user.id + user.name
-    }, user.name);
-  })));
-};
-
-function loadData(store) {
-  // return store.dispatch(fetchUsers());
-  if (store) {
-    if (store.dispatch) {
-      return store.dispatch(__WEBPACK_IMPORTED_MODULE_1__redux_1_actions__["fetchUsers"]);
-    }
-  }
-}
-
-
-/* harmony default export */ __webpack_exports__["a"] = (Object(__WEBPACK_IMPORTED_MODULE_2__redux_4_connect__["a" /* Connect */])(Tickets));
-
-/***/ }),
-/* 11 */
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* unused harmony export mapStateToProps */
-/* unused harmony export mapDispatchToProps */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Connect; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_redux__ = __webpack_require__(4);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_redux___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react_redux__);
-
-
-var _require = __webpack_require__(12),
-    fetchUsers = _require.fetchUsers; // here we will map the properties we want to be in props from reducers ..
-
-
-var mapStateToProps = function mapStateToProps(state) {
-  return {
-    // userToken: state.userToken.userToken,
-    users: state.FetchUsersReducer.users
-  };
-}; // dispatch means triggering an action
-
-var mapDispatchToProps = function mapDispatchToProps(dispatch) {
-  return {
-    // setUserToken: (token) => {
-    //   return dispatch(setUserToken(token)); // idk y but event.currentTarget.value is not working and just event is working
-    // },
-    // async dispatch function
-    fetchingUsers: function fetchingUsers() {
-      return fetchUsers(dispatch);
-    }
-  }; // setSearchField is an action which wants text .
-  // and onSearchChange will occur when we will call it in an input .. so it will be having event.currentTarget.value
-};
-var Connect = function Connect(App) {
-  return Object(__WEBPACK_IMPORTED_MODULE_0_react_redux__["connect"])(mapStateToProps, mapDispatchToProps)(App);
-};
-
-/***/ }),
-/* 12 */
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "fetchUsers", function() { return fetchUsers; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__actionTypes__ = __webpack_require__(5);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios__ = __webpack_require__(12);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_axios___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_axios__);
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
 
@@ -362,10 +191,190 @@ var fetchUsers = /*#__PURE__*/function () {
 // };
 
 /***/ }),
-/* 13 */
+/* 5 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return FETCH_USERS_SUCCESS; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return FETCH_USERS_PENDING; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return FETCH_USERS_FAILED; });
+// export const UserToken = "UserToken";
+var FETCH_USERS_SUCCESS = 'FETCH_USERS_SUCCESS';
+var FETCH_USERS_PENDING = 'FETCH_USERS_PENDING';
+var FETCH_USERS_FAILED = 'FETCH_USERS_FAILED';
+
+/***/ }),
+/* 6 */
+/***/ (function(module, exports) {
+
+module.exports = require("react-redux");
+
+/***/ }),
+/* 7 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_polyfill__ = __webpack_require__(8);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_babel_polyfill___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_babel_polyfill__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_express__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_express___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_express__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_config__ = __webpack_require__(1);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_config___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_router_config__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__client_routes_routes__ = __webpack_require__(2);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__helpers_for_server_renderer__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__helpers_for_server_server_redux_store__ = __webpack_require__(16);
+//? serving as a root file for the server
+ // to use async await
+
+
+
+
+
+
+var app = __WEBPACK_IMPORTED_MODULE_1_express___default()();
+app.use(__WEBPACK_IMPORTED_MODULE_1_express___default.a["static"]('public')); // very important line of code , to run js functionality
+// if "*" does not work , i can directly use ingress-nginx thru http://ingress-nginx-controller.ingress-nginx.svc.cluster.local/*
+
+app.get('*', function (req, res) {
+  var store = Object(__WEBPACK_IMPORTED_MODULE_5__helpers_for_server_server_redux_store__["a" /* default */])(); // some logic to initialize and load data into store
+
+  var promises = Object(__WEBPACK_IMPORTED_MODULE_2_react_router_config__["matchRoutes"])(__WEBPACK_IMPORTED_MODULE_3__client_routes_routes__["a" /* default */], req.path).map(function (_ref) {
+    var route = _ref.route;
+    return route.loadData ? route.loadData(store) : null;
+  });
+  Promise.all(promises).then(function () {
+    res.send(Object(__WEBPACK_IMPORTED_MODULE_4__helpers_for_server_renderer__["a" /* default */])(req, store));
+  });
+});
+app.listen(3000, function () {
+  console.log('Server Side of SSR running on port -- 3000');
+});
+
+/***/ }),
+/* 8 */
+/***/ (function(module, exports) {
+
+module.exports = require("babel-polyfill");
+
+/***/ }),
+/* 9 */
+/***/ (function(module, exports) {
+
+module.exports = require("express");
+
+/***/ }),
+/* 10 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom__ = __webpack_require__(3);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_react_router_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_react_router_dom__);
+
+
+
+var Home = function Home() {
+  return /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null, /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("h1", null, "Im a Home Component "), /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", {
+    onClick: function onClick() {
+      return console.log('You Pressed Me!');
+    }
+  }, "Press Me - !"), /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_1_react_router_dom__["Link"], {
+    to: "/tickets"
+  }, /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("button", null, "Get me to Tickets")));
+};
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  component: Home // this styling is for Routes file specially
+
+});
+
+/***/ }),
+/* 11 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__redux_1_actions__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__redux_4_connect__ = __webpack_require__(13);
+
+
+
+
+var Tickets = function Tickets(props) {
+  Object(__WEBPACK_IMPORTED_MODULE_0_react__["useEffect"])(function () {
+    // this fetch is already happening on the server side, if user navigates to this page, he will automatically get users list
+    // but if he somehow navigate to this page thru the way, from where, server side is not rendered
+    // then, we should also have data on client side, so thats y, we will fetch data here too
+    props.fetchingUsers();
+  }, []);
+  return /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("div", null, /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("h1", null, " Tickets "), /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("ul", null, props.users.map(function (user) {
+    return /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react___default.a.createElement("li", {
+      key: user.id + user.name
+    }, user.name);
+  })));
+};
+
+function loadData(store) {
+  // return store.dispatch(fetchUsers());
+  if (store) {
+    if (store.dispatch) {
+      return store.dispatch(__WEBPACK_IMPORTED_MODULE_1__redux_1_actions__["fetchUsers"]); // not calling
+    }
+  }
+}
+
+/* harmony default export */ __webpack_exports__["a"] = ({
+  loadData: loadData,
+  component: Object(__WEBPACK_IMPORTED_MODULE_2__redux_4_connect__["a" /* Connect */])(Tickets)
+});
+
+/***/ }),
+/* 12 */
 /***/ (function(module, exports) {
 
 module.exports = require("axios");
+
+/***/ }),
+/* 13 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export mapStateToProps */
+/* unused harmony export mapDispatchToProps */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Connect; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_redux__ = __webpack_require__(6);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0_react_redux___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_0_react_redux__);
+
+
+var _require = __webpack_require__(4),
+    fetchUsers = _require.fetchUsers; // here we will map the properties we want to be in props from reducers ..
+
+
+var mapStateToProps = function mapStateToProps(state) {
+  return {
+    // userToken: state.userToken.userToken,
+    users: state.FetchUsersReducer.users
+  };
+}; // dispatch means triggering an action
+
+var mapDispatchToProps = function mapDispatchToProps(dispatch) {
+  return {
+    // setUserToken: (token) => {
+    //   return dispatch(setUserToken(token)); // idk y but event.currentTarget.value is not working and just event is working
+    // },
+    // async dispatch function
+    fetchingUsers: function fetchingUsers() {
+      return fetchUsers(dispatch);
+    }
+  }; // setSearchField is an action which wants text .
+  // and onSearchChange will occur when we will call it in an input .. so it will be having event.currentTarget.value
+};
+var Connect = function Connect(App) {
+  return Object(__WEBPACK_IMPORTED_MODULE_0_react_redux__["connect"])(mapStateToProps, mapDispatchToProps)(App);
+};
 
 /***/ }),
 /* 14 */
@@ -379,16 +388,22 @@ module.exports = require("axios");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom__ = __webpack_require__(3);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_react_router_dom___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_react_router_dom__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__client_routes_routes__ = __webpack_require__(2);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_redux__ = __webpack_require__(4);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_redux__ = __webpack_require__(6);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_react_redux___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_react_redux__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_router_config__ = __webpack_require__(1);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_react_router_config___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_react_router_config__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_serialize_javascript__ = __webpack_require__(22);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6_serialize_javascript___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_6_serialize_javascript__);
 
 
 
 
 
 
+ // this works as JSON.stringify() but when some malicious script tag is placed as a normal data
+// serialize will also replace that special script tag with a normal string
+// and it will replace "<" ">" characters with their unit codes
+//? the attack is called xss attack -- cross side script attack
 
 var renderer = function renderer(req, store) {
   var content = Object(__WEBPACK_IMPORTED_MODULE_1_react_dom_server__["renderToString"])( /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react__["createElement"](__WEBPACK_IMPORTED_MODULE_4_react_redux__["Provider"], {
@@ -397,7 +412,7 @@ var renderer = function renderer(req, store) {
     location: req.path,
     context: {}
   }, /*#__PURE__*/__WEBPACK_IMPORTED_MODULE_0_react__["createElement"]("div", null, Object(__WEBPACK_IMPORTED_MODULE_5_react_router_config__["renderRoutes"])(__WEBPACK_IMPORTED_MODULE_3__client_routes_routes__["a" /* default */])))));
-  return "\n  <html>\n  <head></head>\n  <body>\n  <div id=\"root\">".concat(content, "</div>\n  <script src=\"bundle.js\" ></script>\n  </body>\n  </html>\n  ");
+  return "\n  <html>\n  <head></head>\n  <body>\n  <div id=\"root\">".concat(content, "</div>\n  <script> window.INITIAL_STATE = ").concat(__WEBPACK_IMPORTED_MODULE_6_serialize_javascript___default()(store.getState()), " </script>\n  <script src=\"bundle.js\" ></script>\n  </body>\n  </html>\n  ");
 };
 
 /* harmony default export */ __webpack_exports__["a"] = (renderer);
@@ -539,6 +554,12 @@ var FetchUsersReducer = function FetchUsersReducer() {
 //     return { ...state, error: action.payload, isPending: false };
 //   } else return state;
 // };
+
+/***/ }),
+/* 22 */
+/***/ (function(module, exports) {
+
+module.exports = require("serialize-javascript");
 
 /***/ })
 /******/ ]);
