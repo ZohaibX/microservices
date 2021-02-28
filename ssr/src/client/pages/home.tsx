@@ -15,4 +15,6 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default {
+  component: Home, // this styling is for Routes file specially
+};
