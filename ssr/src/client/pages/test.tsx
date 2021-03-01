@@ -1,7 +1,17 @@
 import * as React from 'react';
+import { connect } from 'react-redux';
+import RequireAuth from '../components/hocs/require-auth';
 
-const Test = () => {
+const Test = (props) => {
+  console.log(props.currentUser);
+
   return 'Im a test Page';
 };
 
-export default Test;
+function mapStateToProps({ currentUser }) {
+  return { currentUser };
+}
+
+export default {
+  component: connect(mapStateToProps)(RequireAuth(Test)),
+};
