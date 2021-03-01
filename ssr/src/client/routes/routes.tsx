@@ -1,9 +1,19 @@
 import Home from '../pages/home';
-import Tickets from './../pages/tickets';
+import UsersList from '../pages/usersList';
+import App from '../App';
+import NotFound from '../pages/not-found';
+import Admins from '../pages/admins';
+import Test from './../pages/test';
 
-const Routes = [
-  { path: '/', ...Home, exact: true },
-  { path: '/tickets', ...Tickets },
+export default [
+  {
+    ...App,
+    routes: [
+      { path: '/', ...Home, exact: true },
+      { path: '/users', ...UsersList },
+      { path: '/admins', ...Admins },
+      { path: '/test', ...Test },
+      { ...NotFound }, // this is how we use not-found page -- by not providing path
+    ],
+  },
 ];
-
-export default Routes;

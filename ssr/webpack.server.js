@@ -9,7 +9,7 @@ module.exports = {
   target: 'node',
 
   // Tell webpack , the route file of server side
-  entry: './src/index.tsx',
+  entry: './src/index.jsx',
 
   // tell webpack, where to put the output file
   output: {
@@ -18,7 +18,7 @@ module.exports = {
   },
 
   resolve: {
-    extensions: ['.ts', '.tsx', '.js', '.json'],
+    extensions: ['.ts', '.tsx', '.js', '.jsx', '.json'],
   },
 
   // tell webpack, to apply babel on every file, it runs through
