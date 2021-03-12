@@ -1,32 +1,34 @@
 import * as React from 'react';
-import { Link } from 'react-router-dom';
 import { connect } from 'react-redux';
-import { fetchCurrentUser } from '../Store/actions/index';
+import { Link } from 'react-router-dom';
 
-const Header = (props) => {
-  const authButton = props.currentUser ? (
-    <a href='/api/logout'>Logout</a>
-  ) : (
-    <a href='/api/auth/google'>Login</a>
-  );
+const Header = (currentUser) => {
+  console.log('current user is', currentUser);
+
+  const links = [
+    !currentUser.currentUser && { label: 'Sign Up', href: '/signUp' },
+    !currentUser.currentUser && { label: 'Sign In', href: '/signIn' },
+    currentUser.currentUser && { label: 'Sign Out', href: '/signOut' },
+  ]
+    .filter((trueLinks) => trueLinks) // it will return only trues
+    .map(({ label, href }: any) => (
+      <li key={href} className='nav-item'>
+        <Link to={href} className='nav-link' style={{ color: 'blue' }}>
+          {label}
+        </Link>
+      </li>
+    ));
 
   return (
-    <div className='nav-wrapper'>
-      <Link to='/' className='brand-logo'>
-        React SSR
+    <nav className='navbar navbar-light bg-light' style={{ height: '20vh' }}>
+      <Link className='navbar-brand font-weight-bolder' to='/'>
+        Home
       </Link>
-      <ul className='right'>
-        <li>
-          <Link to='/users'>Users</Link>
-        </li>
 
-        <li>
-          <Link to='/admins'>Admins</Link>
-        </li>
-
-        <li>{authButton}</li>
-      </ul>
-    </div>
+      <div className='d-flex justify-content-end'>
+        <ul className='nav d-flex align-items-center'>{links}</ul>
+      </div>
+    </nav>
   );
 };
 
@@ -35,5 +37,3 @@ function mapStateToProps({ currentUser }) {
 }
 
 export default connect(mapStateToProps)(Header);
-// note -- we want currentUser details to be rendered by server itself only
-// thats y we are not using mapDispatch to props ..

@@ -18,5 +18,3 @@ ReactDom.hydrate(
   </Provider>,
   document.querySelector('#root')
 );
-
-// important to use hydrate here

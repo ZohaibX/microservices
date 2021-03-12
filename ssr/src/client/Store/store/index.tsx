@@ -7,7 +7,6 @@ import rootReducer from '../reducers/index';
 import { createLogger } from 'redux-logger';
 const logger = createLogger();
 
-// God way of adding some property to some built-in method
 declare global {
   interface Window {
     INITIAL_STATE: any;
@@ -17,11 +16,7 @@ declare global {
 const axiosInstance = axios.create({
   baseURL: '/api',
 });
-// if any request comes to the browser as '/users'
-// it will go to '/api/users'
-// then, '/api/auth' will go to the server - index.ts and will attach to the proxy route
 
-// window.INITIAL_STATE must be defined on the server -- on the renderer file
 const store = createStore(
   rootReducer,
   window.INITIAL_STATE,

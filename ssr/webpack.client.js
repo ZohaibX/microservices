@@ -4,7 +4,7 @@ const path = require('path');
 
 module.exports = {
   // Tell webpack , the route file of server side
-  entry: './src/client/client.tsx',
+  entry: './src/client/client.jsx',
 
   // tell webpack, where to put the output file
   output: {

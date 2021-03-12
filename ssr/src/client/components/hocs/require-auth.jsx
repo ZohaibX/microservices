@@ -5,9 +5,14 @@ import { Redirect } from 'react-router-dom';
 export default (ChildComponent) => {
   class RequireAuth extends Component {
     render() {
-      console.log(' Current User is ', this.props.currentUser);
-      if (this.props.currentUser === false) return <Redirect to='/' />;
-      if (this.props.currentUser === null) return <div>Loading...</div>;
+      const { match, location, history, router } = this.props;
+      const { currentUser } = this.props;
+      if (currentUser === false)
+        return (
+          <Redirect to={{ pathname: '/signIn' }} />
+        );
+      // state is not working here, to redirect back
+      if (currentUser === null) return <div>Loading...</div>;
       return <ChildComponent {...this.props} />;
     }
   }
