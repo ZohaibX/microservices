@@ -1,17 +1,15 @@
 import * as React from 'react';
-import { connect } from 'react-redux';
+import { withRouter } from 'react-router-dom';
 import RequireAuth from '../components/hocs/require-auth';
 
-const Test = (props) => {
-  console.log(props.currentUser);
-
-  return 'Im a test Page';
+const Test = () => {
+  return (
+    <div className='container-fluid'>
+      <h1 className='text-center my-5 font-weight-bolder'>Im a test Page</h1>
+    </div>
+  );
 };
 
-function mapStateToProps({ currentUser }) {
-  return { currentUser };
-}
-
 export default {
-  component: connect(mapStateToProps)(RequireAuth(Test)),
+  component: withRouter(RequireAuth(Test)),
 };

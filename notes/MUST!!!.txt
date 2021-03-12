@@ -1,39 +1,23 @@
-// create a note, listing all the features of this project -- DONE 
 
-// add timing to jwt
 
-// routes protection in next js 
 
-// create admin user and show all accounts and have the ability to ban them 
-// tell all the services, not to show anything to a banned user
+
+
+
+
+
 
 // Persistent Volume Claim -- MUST
 
-// Routes Redirection
 
-// add kubernetes deployment notes -- full fledged -- DONE 
 
-// Add GCE
-
-// Direction Note to HTTPS Connection -- DONE 
-
-// add CI/CD all details -- DONE 
-
-// REDUX
-
-// HTTPS 
-
-// POSTGRES 
-// prepare setup.ts file for that 
+I already have some repos for these topics 
 
 // OAUTH 
-
-// PASSPORT 
-
+// POSTGRES --- // prepare setup.ts file for that too
 // GQL ON NEXT AND ON SOME SERVICE 
-
 // REDIS AGAIN -- FULL FLEDGED 
 
-// STRIPE ALL DETAILS 
+
 
 

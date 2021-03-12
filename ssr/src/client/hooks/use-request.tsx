@@ -19,7 +19,8 @@ const useRequest = (url: string, body: {}, method: string) => {
           ...props,
         });
         // console.log(data);
-
+        if (method === 'post' && props.redirectPath)
+          window.location = props.redirectPath;
         return data;
       }
     } catch (e) {

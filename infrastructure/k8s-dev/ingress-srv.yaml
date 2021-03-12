@@ -41,5 +41,4 @@ spec:
           #     serviceName: client-srv # actual service file name
           #     servicePort: 3000 # actual service file port
 
-
           #! Only one of the client-srv could hold /?(.*) path

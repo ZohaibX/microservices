@@ -1,0 +1,10 @@
+redirection again to the page we were redirected from:-
+      whenever we redirect the user from HOCs, Redirect all properties work in the pag, we are redirected to.
+      properties like <Redirect to={{pathname , search , hash}}/> works
+      but when we do <Redirect to={{pathname: '/signIn',state: { from: location }}} />
+      pathname property works, but state property is always undefined 
+
+
+dynamic routes:-
+      routes like path="/signIn" works
+      but path="/auth/signIn" shows error in console

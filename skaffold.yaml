@@ -20,13 +20,25 @@ build:
         manual:
           - src: 'src/**/*.ts' # every ts file in the src folder #? look style of this file
             dest: . # for putting the changes in the container
-    - image: 03004968719/ms-client
-      context: client # path to the folder
+    #! Only one client srv at a time 
+    # - image: 03004968719/ms-client
+    #   context: client # path to the folder
+    #   docker:
+    #     dockerfile: Dockerfile
+    #   sync:
+    #     manual:
+    #       - src: '**/*.tsx' # every ts file in the src folder #? look style of this file
+    #         dest: . # for putting the changes in the container
+    - image: 03004968719/ms-ssr
+      context: ssr # path to the folder
       docker:
         dockerfile: Dockerfile
       sync:
         manual:
-          - src: '**/*.tsx' # every ts file in the src folder #? look style of this file
+          - src: '**/*.jsx'
+            dest: . # for putting the changes in the container
+
+          - src: '**/*.tsx'
             dest: . # for putting the changes in the container
     - image: 03004968719/ms-tickets
       context: tickets # path to the folder
@@ -59,12 +71,4 @@ build:
       sync:
         manual:
           - src: 'src/**/*.ts' # every ts file in the src folder #? look style of this file
-            dest: . # for putting the changes in the container
-    - image: 03004968719/ms-ssr
-      context: ssr # path to the folder
-      docker:
-        dockerfile: Dockerfile
-      sync:
-        manual:
-          - src: 'src/**/*.tsx'
             dest: . # for putting the changes in the container
