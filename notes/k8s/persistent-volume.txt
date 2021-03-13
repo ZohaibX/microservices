@@ -1,3 +1,6 @@
 kubectl get pv 
 kubectl get pvc 
 kubectl get storageclass
+
+docker ps
+docker kill [container_id] // pod will restart  in k8s

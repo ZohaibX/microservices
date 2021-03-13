@@ -1,3 +1,7 @@
 pods must be restarted after facing different tests and having trash data
 
-kubectl delete pod [pod name]
+
+docker ps
+docker kill [container_id] // pod will restart  in k8s
+
+kubectl delete pod [pod name] // delete  the pod permanently
