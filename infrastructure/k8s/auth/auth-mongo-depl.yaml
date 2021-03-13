@@ -13,14 +13,14 @@ spec:
         app: auth-mongo
     spec:
       volumes:
-        - name: auth-mongo-pv-storage
+        - name: auth-storage
           persistentVolumeClaim:
-            claimName: auth-mongo-pv-claim
+            claimName: auth-pvc
       containers:
         - name: auth-mongo
           image: mongo
           volumeMounts:
-            - name: auth-mongo-pv-storage
+            - name: auth-storage
               mountPath: /data/db-auth
 ---
 apiVersion: v1
