@@ -8,9 +8,9 @@ nats streaming server for data communication -- publishers and listeners.
 payments service with stripe is used.
 expiration service is used.
 common directory published to npm and used in all the services. 
-persistent volume claims are used with some of the services. 
+persistent volume claims are used with some of the mongo images. 
 
 docker and kubernetes are used.
-CI/CD is done. 
+CI/CD is done. GKE setup with github workflows. 
 testing with jest is made. 
 skaffold.yaml.
