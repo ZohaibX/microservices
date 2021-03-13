@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: PersistentVolumeClaim
 metadata:
-  name: tickets-pvc
+  name: auth-pvc
 spec:
   accessModes:
     - ReadWriteOnce

@@ -1,20 +1,7 @@
-
-
-
-
-
-
-
-
-
-// Persistent Volume Claim -- MUST
-
-
-
 I already have some repos for these topics 
 
 // OAUTH 
-// POSTGRES --- // prepare setup.ts file for that too
+// POSTGRES 
 // GQL ON NEXT AND ON SOME SERVICE 
 // REDIS AGAIN -- FULL FLEDGED 
 
