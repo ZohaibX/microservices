@@ -1,0 +1,30 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: image-upload-mongo-depl
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: image-upload-mongo
+  template:
+    metadata:
+      labels:
+        app: image-upload-mongo
+    spec:
+      containers:
+        - name: image-upload-mongo
+          image: mongo
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: image-upload-mongo-srv
+spec:
+  selector:
+    app: image-upload-mongo
+  ports:
+    - name: image-upload-db
+      protocol: TCP
+      port: 27017 # default port for mongodb
+      targetPort: 27017

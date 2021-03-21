@@ -10,3 +10,5 @@ kubectl rollout restart deployment [deployment_name]
 
 sometimes a pvc will not delete, bcoz it is protected 
 google it and i'll find out, most probably from stack overflow 
+
+https://stackoverflow.com/questions/51358856/kubernetes-cant-delete-persistentvolumeclaim-pvc
