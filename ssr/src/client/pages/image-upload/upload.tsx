@@ -33,13 +33,14 @@ const Upload = (props: any) => {
       <img
         src={
           'https://my-first-s3-bucket-1234567.s3.amazonaws.com/' +
-          '6056f758d7f23000230dd7f6/93c34e20-8a27-11eb-8687-6937e84f27ab.jpeg'
+          '6056f758d7f23000230dd7f6/0f7356a0-8a3c-11eb-8687-6937e84f27ab.jpeg'
         }
         alt=""
       />
       {/* Second string is the key, we will get from our backend db -- as an imageUrl */}
       {/* 1st string is the bucket url and i can get this by going into bucket - inside any image */}
       {/* now, it depends on us, if we use some env variable for 1st string -- and second string will be obviously from backend - not hard coated */}
+      {/* Second String Must be like userId/someUniqueKey.jpeg bcoz thats how we have set it in backend - get-url route*/}
     </div>
   );
 };
