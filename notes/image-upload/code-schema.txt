@@ -1,0 +1,7 @@
+I have a get-url route to get a presigned url back to the client 
+and in the client SSR -- page (image-upload) , 
+i will send a request thru redux actions to backend (get-url route) to get a presigned url back 
+then, i will make a put request in same redux action to that presigned url, and i will put that image to that url 
+and then in the same redux action, i can tell backend to save the url and i can send some data with that 
+
+displaying an image is in SSR - pages - image-upload

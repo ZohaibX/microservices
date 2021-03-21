@@ -32,6 +32,10 @@ spec:
             backend:
               serviceName: payments-service # actual service file name
               servicePort: 3000 # actual service file port
+          - path: /api/image-upload/?(.*)
+            backend:
+              serviceName: image-upload-service # actual service file name
+              servicePort: 3000 # actual service file port
           - path: /?(.*) # idk but ssr is not leaving this exact route
             backend:
               serviceName: ssr-service # actual service file name

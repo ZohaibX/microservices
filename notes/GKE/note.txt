@@ -1,0 +1,1 @@
+manifest workflow will deploy all the k8s images 

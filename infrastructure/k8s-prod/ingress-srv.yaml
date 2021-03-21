@@ -31,3 +31,5 @@ spec:
             backend:
               serviceName: client-srv # actual service file name
               servicePort: 3000 # actual service file port
+
+# there should be some changes made -- acc to the dev ingress-srv file
