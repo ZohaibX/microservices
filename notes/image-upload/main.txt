@@ -1,4 +1,4 @@
-create s3 bucket
+create s3 bucket {us-east-1} is working fine btw
 
 open iam on other tab 
 policies 
