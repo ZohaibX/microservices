@@ -1,0 +1,9 @@
+What changes I need to make, to start image uploading in future
+in case -- if this bucket  and iam credentials are lost 
+
+get the project from github
+then create iam policy and user according to main notes here in the same folder 
+create all the s3 bucket stuff as described in main notes
+
+after configuring everything
+change iam keys and bucket info in the /get-url route in image-upload srv

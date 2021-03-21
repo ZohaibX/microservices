@@ -14,7 +14,8 @@ const Upload = (props: any) => {
     e.preventDefault();
     if (!file) return alert('File is not selected');
 
-    props.uploadImage(file);
+    props.uploadImage(file); // this is the main function -- handling post request to backend and s3
+    // this function is defined in -> reducer -> actions
   };
 
   return (
