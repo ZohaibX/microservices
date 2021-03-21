@@ -9,6 +9,7 @@ payments service with stripe is used.
 expiration service is used.
 common directory published to npm and used in all the services. 
 persistent volume claims are used with some of the mongo images. 
+Image Uploading With S3 is used
 
 docker and kubernetes are used.
 CI/CD is done. GKE setup with github workflows. 
